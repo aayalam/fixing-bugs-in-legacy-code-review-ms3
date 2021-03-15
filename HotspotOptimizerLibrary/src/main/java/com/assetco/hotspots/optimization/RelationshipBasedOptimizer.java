@@ -32,10 +32,11 @@ class RelationshipBasedOptimizer {
                 if (Objects.equals(showcaseAssets.get(0).getVendor(), asset.getVendor()))
                     searchResults.getHotspot(TopPicks).addMember(asset);
             } else {
-                if (showcaseAssets.size() != 0)
+/*                if (showcaseAssets.size() != 0)
                     if (!Objects.equals(showcaseAssets.get(0).getVendor(), asset.getVendor()))
                         if (showcaseAssets.size() < 3)
                             showcaseAssets.clear();
+*/
 
                 if (showcaseAssets.size() == 0 || Objects.equals(showcaseAssets.get(0).getVendor(), asset.getVendor()))
                     showcaseAssets.add(asset);

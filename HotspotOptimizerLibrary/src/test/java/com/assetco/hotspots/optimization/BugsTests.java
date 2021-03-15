@@ -25,14 +25,17 @@ public class BugsTests {
     }
 
     @Test
-    public void precedingPartnerWithLongTrailingAssetsDoesNotWin() {
-        var missing = givenAssetInResultsWithVendor(partnerVendor);
+    public void precedingPartnerWithLongTrailingAssetsWins() {
+        var previouslyMissing = givenAssetInResultsWithVendor(partnerVendor);
         givenAssetInResultsWithVendor(makeVendor(Partner));
-        var expected = givenAssetsInResultsWithVendor(maximumShowcaseItems - 1, partnerVendor);
+        var temporary = givenAssetsInResultsWithVendor(maximumShowcaseItems - 1, partnerVendor);
+
+        var expected = new ArrayList<Asset>();
+        expected.add(previouslyMissing);
+        expected.addAll(temporary);
 
         whenOptimize();
 
-        thenHotspotDoesNotHave(Showcase, missing);
         thenHotspotHasExactly(Showcase, expected);
     }
 
